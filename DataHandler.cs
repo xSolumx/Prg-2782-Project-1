@@ -18,7 +18,7 @@ namespace Prg_2782_Project_1
         string conn = @"Data Source=X\SQLEXPRESS;Initial Catalog=StudentInfo;Integrated Security=True";
        
        
-        //Students Form 3
+        //Students section Form 3
         public DataTable DisplayStudents()
         {
             SqlConnection con = new SqlConnection(conn);
@@ -27,6 +27,7 @@ namespace Prg_2782_Project_1
             DataTable dt = new DataTable();
             adapter.Fill(dt);
             return dt;
+            
         }
 
         public DataTable SearchStudent(int id)
@@ -50,7 +51,7 @@ namespace Prg_2782_Project_1
                 cmd.Parameters.AddWithValue("@Id", id);
                 cmd.Parameters.AddWithValue("@Name", name);
                 cmd.Parameters.AddWithValue("@Surname", surname);
-                cmd.Parameters.AddWithValue("@DateOfBirth", dob);
+                cmd.Parameters.AddWithValue("@DateOfBirth", DateTime.Parse(dob));
                 cmd.Parameters.AddWithValue("@Gender", gender);
                 cmd.Parameters.AddWithValue("@Phone", phone);
                 cmd.Parameters.AddWithValue("@Address", address);
@@ -61,8 +62,44 @@ namespace Prg_2782_Project_1
             }
         }
 
+        public void AddStudent(int id, string name, string surname, string dob, string gender, string phone, string address, string codes)
+        {
+            using (SqlConnection connection = new SqlConnection(conn))
+            {
+                SqlCommand cmd = new SqlCommand("spAddStudent", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-        //Modules Form 4
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Surname", surname);
+                cmd.Parameters.AddWithValue("@DateOfBirth", DateTime.Parse(dob));
+                cmd.Parameters.AddWithValue("@Gender", gender);
+                cmd.Parameters.AddWithValue("@Phone", phone);
+                cmd.Parameters.AddWithValue("@Address", address);
+                cmd.Parameters.AddWithValue("@Codes", codes);
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteStudent(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(conn))
+            {
+                SqlCommand cmd = new SqlCommand("spDeleteStudent", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Id", id);
+
+                connection.Open();
+                
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
+        //Modules section Form 4
         public DataTable DisplayModule()
         {
             SqlConnection con = new SqlConnection(conn);

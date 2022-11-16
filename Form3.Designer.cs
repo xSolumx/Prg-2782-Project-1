@@ -312,8 +312,10 @@ namespace Prg_2782_Project_1
             this.dgf_StudentData.Name = "dgf_StudentData";
             this.dgf_StudentData.RowHeadersWidth = 51;
             this.dgf_StudentData.RowTemplate.Height = 24;
+            this.dgf_StudentData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgf_StudentData.Size = new System.Drawing.Size(507, 327);
             this.dgf_StudentData.TabIndex = 1;
+            this.dgf_StudentData.SelectionChanged += new System.EventHandler(this.dgf_StudentData_SelectionChanged);
             // 
             // txbSearchStudent
             // 
@@ -365,6 +367,7 @@ namespace Prg_2782_Project_1
             this.btn_DeleteStudentData.TabIndex = 6;
             this.btn_DeleteStudentData.Text = "Delete";
             this.btn_DeleteStudentData.UseVisualStyleBackColor = false;
+            this.btn_DeleteStudentData.Click += new System.EventHandler(this.btn_DeleteStudentData_Click);
             // 
             // btn_UpdateStudentData
             // 
@@ -378,6 +381,7 @@ namespace Prg_2782_Project_1
             this.btn_UpdateStudentData.TabIndex = 7;
             this.btn_UpdateStudentData.Text = "Update";
             this.btn_UpdateStudentData.UseVisualStyleBackColor = false;
+            this.btn_UpdateStudentData.Click += new System.EventHandler(this.btn_UpdateStudentData_Click);
             // 
             // Btn_Nav_ModuleData
             // 
